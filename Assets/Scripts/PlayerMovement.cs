@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5; // variable for the speed of the player
+    public float acceleration = 10f; // variable for player acceleration
     public Rigidbody2D rb; // reference to the player's RigidBody 2D
     
 
@@ -35,8 +36,9 @@ public class PlayerMovement : MonoBehaviour
         {
             movement.x = -1;
         }
-        
+
         // sets the player's velocity to the movement vector * speed
-        rb.linearVelocity = movement * speed;
+        movement = movement.normalized;
+        rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, movement * speed, acceleration * Time.fixedDeltaTime);
     }
 }

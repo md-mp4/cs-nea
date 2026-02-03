@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 5
+  acceleration: 25
   rb: {fileID: 417252876}
 --- !u!1 &519420028
 GameObject:
