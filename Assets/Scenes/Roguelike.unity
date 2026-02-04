@@ -292,6 +292,7 @@ MonoBehaviour:
   speed: 5
   acceleration: 25
   rb: {fileID: 417252876}
+  animator1: {fileID: 417252879}
 --- !u!95 &417252879
 Animator:
   serializedVersion: 7
