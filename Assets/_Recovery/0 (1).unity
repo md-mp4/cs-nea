@@ -504,12 +504,11 @@ GameObject:
   m_Component:
   - component: {fileID: 417252875}
   - component: {fileID: 417252874}
-  - component: {fileID: 417252879}
   - component: {fileID: 417252877}
   - component: {fileID: 417252876}
   - component: {fileID: 417252878}
+  - component: {fileID: 417252879}
   - component: {fileID: 417252880}
-  - component: {fileID: 417252881}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -587,8 +586,7 @@ Transform:
   m_LocalPosition: {x: -8.92, y: 1.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 934120752}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &417252876
@@ -669,10 +667,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 5
   acceleration: 25
-  direction: 1
   rb: {fileID: 417252876}
   animator1: {fileID: 417252879}
-  playerCombat: {fileID: 417252881}
+  direction: 1
 --- !u!95 &417252879
 Animator:
   serializedVersion: 7
@@ -707,32 +704,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac88898914df99f4ea019b19d106742d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  currentHealth: 20
-  maxHealth: 20
+  currentHealth: 5
+  maxHealth: 5
   healthslider: {fileID: 1511579307}
   healthText: {fileID: 343142985}
   healthTextAnimation: {fileID: 343142987}
---- !u!114 &417252881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417252873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c53cb64f7f5b8014f904ee2523d32cf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_Combat
-  anim: {fileID: 417252879}
-  attackPoint: {fileID: 934120752}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  damage: 1
-  weaponRange: 0.8
-  timer: 0
-  cooldown: 1
 --- !u!1 &501160937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,37 +1355,6 @@ Transform:
   - {fileID: 1210234396}
   - {fileID: 519420032}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &934120751
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 934120752}
-  m_Layer: 0
-  m_Name: AttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &934120752
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934120751}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42, y: -0.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 417252875}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1014870645
 GameObject:
@@ -9786,7 +9731,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1014870646}
   m_HandleRect: {fileID: 0}
@@ -10446,8 +10391,7 @@ GameObject:
   - component: {fileID: 1781055269}
   - component: {fileID: 1781055270}
   - component: {fileID: 1781055271}
-  - component: {fileID: 1781055272}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Torch Red 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10607,12 +10551,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
   damage: 1
   attackPoint: {fileID: 1025911365}
-  weaponRange: 0.8
+  weaponRange: 1.2
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  knockbackForce: 3
-  stunTime: 0.4
 --- !u!114 &1781055269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10691,20 +10633,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1781055272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781055263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b076d70a52777944682d0739d71b4fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
-  currenHealth: 10
-  maxHealth: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

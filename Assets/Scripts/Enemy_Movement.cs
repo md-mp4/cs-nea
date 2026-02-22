@@ -80,8 +80,8 @@ public class Enemy_Movement : MonoBehaviour
                 // changes state to attacking if the distance between player and enemy is less than attack range
             }
         
-            else if (Vector2.Distance(transform.position, player.position) > attackRange)
-            // if enemy sees player but can't attack
+            else if (Vector2.Distance(transform.position, player.position) > attackRange && enemyState != EnemyState.Attacking)
+            // if enemy sees player but can't attack and they aren't in the attacking state
             {
                 ChangeState(EnemyState.Chasing);
             }

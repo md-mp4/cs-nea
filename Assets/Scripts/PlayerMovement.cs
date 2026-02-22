@@ -1,19 +1,29 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5; // variable for the speed of the player
     public float acceleration = 10f; // variable for player acceleration
+    public int direction = 1; // variable to define the direction the player is facing
     public Rigidbody2D rb; // reference to the player's RigidBody 2D
     public Animator animator1; // reference to the player's Animator
-    public int direction = 1; // variable to define the direction the player is facing
+    public Player_Combat playerCombat; // reference to player combat file
 
     private bool isKnockedBack;
 
-    void Start() // Runs only when the class is initialised
+    private void Update()
     {
-        
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                playerCombat.Attack();
+            }
+            
+        }
     }
 
     void FixedUpdate() // Runs 50x a second continuously
@@ -64,11 +74,19 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3 (transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 
-    public void Knockback(Transform enemy) // knocks player back
+    public void Knockback(Transform enemy, float force, float stunTime) // knocks player back
     {
         isKnockedBack = true; // removes player movement
-        Vector2 direction = transform.position - enemy.position; // direction to be knocked back is calculated
-        rb.linearVelocity = direction; // moves player in direction calculated above
+        Vector2 direction = (transform.position - enemy.position).normalized; // direction to be knocked back is calculated
+        rb.linearVelocity = direction * force; // moves player in direction calculated above
+        StartCoroutine(KnockbackCounter(stunTime)); // stuns the player for stunTime
+    }
+
+    IEnumerator KnockbackCounter(float stunTime) // coroutine to stun for certain time after knockback
+    {
+        yield return new WaitForSeconds(stunTime); // waits stunTime seconds
+        rb.linearVelocity = Vector2.zero; // zeroes speed
+        isKnockedBack = false; // gives player control back
     }
 
 }
