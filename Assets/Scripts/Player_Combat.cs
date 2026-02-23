@@ -5,11 +5,9 @@ public class Player_Combat : MonoBehaviour
     public Animator anim; // animator reference
     public Transform attackPoint; // reference to player's point of attack
     public LayerMask enemyLayer; // checks if there is an enemy in the attack
-    public int damage = 1; // how much damage the player does
-    public float weaponRange; // how far the attacks reach
+
     public float timer; // float to be used as a timer
     public float cooldown = 1; // float to be the time before the player can attack again
-
 
     private void Update()
     {
@@ -32,12 +30,20 @@ public class Player_Combat : MonoBehaviour
 
     public void DealDamage() // does damage to enemy
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, enemyLayer);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, StatsManager.Instance.weaponRange, enemyLayer);
         // find enemies in the enemyLayer in a circle around an attackPoint with a radius of weaponRange
 
         if (enemies.Length > 0) // runs if an enemy is detected
         {
-            enemies[0].GetComponent<Enemy_Health>().ChangeHealth(-damage); // hurts enemy
+            if (enemies[0].isTrigger) // if its a trigger then the damage and knockback code don't run
+            {
+                return;
+            }
+            enemies[0].GetComponent<Enemy_Health>().ChangeHealth(-StatsManager.Instance.damage); // hurts enemy
+            enemies[0].GetComponent<Enemy_Knockback>().Knockback(
+                transform, StatsManager.Instance.knockbackForce, 
+                StatsManager.Instance.knockbackTime, 
+                StatsManager.Instance.stunTime); // knocks back enemy
         }
     }
 
@@ -50,7 +56,7 @@ public class Player_Combat : MonoBehaviour
     // when gizmos are on, shows blue circle of range weaponRange around attackPosition
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(attackPoint.position, weaponRange);
+        Gizmos.DrawWireSphere(attackPoint.position, StatsManager.Instance.weaponRange);
     }
 
 }

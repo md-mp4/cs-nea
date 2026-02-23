@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5; // variable for the speed of the player
     public float acceleration = 10f; // variable for player acceleration
     public int direction = 1; // variable to define the direction the player is facing
     public Rigidbody2D rb; // reference to the player's RigidBody 2D
@@ -62,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
             // defines the player's movement and gives them velocity and acceleration
             movement = movement.normalized;
-            rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, movement * speed, acceleration * Time.fixedDeltaTime);
+            rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, movement * StatsManager.Instance.speed, acceleration * Time.fixedDeltaTime);
         }
 
     }
