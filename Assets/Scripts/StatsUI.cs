@@ -5,10 +5,36 @@ using UnityEngine.InputSystem;
 public class StatsUI : MonoBehaviour
 {
     public GameObject[] statsSlots; // reference to statsSlot object
+    public CanvasGroup statsCanvas; // reference to the Canvas Group object
+    private bool isVisible = false; // variable for if the stats panel appears on the screen
 
     private void Start() // runs at start of the program
     {
         UpdateAllStats(); // initialises all stats in the UI
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current != null && Keyboard.current.lKey.wasPressedThisFrame)
+        // Check if the L key was pressed this frame and runs the code below if it was
+        {
+            ToggleStats(); // toggles the stats menu
+        }
+    }
+
+    private void ToggleStats() // toggles the stats panel
+    {
+        UpdateAllStats(); // used to update all stats whenever the panel is opened or closed
+        isVisible = !isVisible; // sets isVisible to the opposite value - if its true, sets it to false etc
+        if (isVisible == true)
+        {
+            statsCanvas.alpha = 1f; // sets the canvas group alpha to 1 - making it visible
+        }
+        else 
+        {
+           statsCanvas.alpha = 0f; // sets the canvas group alpha to 0 - making it invisible
+        }
+        statsCanvas.blocksRaycasts = isVisible; // toggles blocking raycasts depending on the value of isVisible
     }
 
     public void UpdateDamage() // changes the damage stat text

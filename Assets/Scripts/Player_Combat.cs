@@ -5,6 +5,7 @@ public class Player_Combat : MonoBehaviour
     public Animator anim; // animator reference
     public Transform attackPoint; // reference to player's point of attack
     public LayerMask enemyLayer; // checks if there is an enemy in the attack
+    public StatsUI statsUI; // reference to stats ui script
 
     public float timer; // float to be used as a timer
     public float cooldown = 1; // float to be the time before the player can attack again
