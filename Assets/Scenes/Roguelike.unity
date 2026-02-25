@@ -2467,7 +2467,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1014870645
 GameObject:
@@ -12269,6 +12269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   currentHealth: 0
   maxHealth: 10
+  expReward: 3
 --- !u!114 &1781055273
 MonoBehaviour:
   m_ObjectHideFlags: 0

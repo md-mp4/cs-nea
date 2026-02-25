@@ -20,16 +20,16 @@ public class ExpManager : MonoBehaviour
         UpdateUI(); // readys up the UI with the correct starting values
     }
 
-    private void Update()
+    private void OnEnable() // runs when enabled
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                GainExperience(2);
-            }
-            
-        }
+        Enemy_Health.OnMonsterDefeated += GainExperience;
+        // uses OnMonsterDefeated to give the player the amount of exp dictated in other scripts
+    }
+
+    private void OnDisable() // runs when disabled
+    {
+        Enemy_Health.OnMonsterDefeated -= GainExperience;
+        // unsubscribes from OnEnable so the player doesn't gain exp more than once
     }
 
     public void GainExperience(int amount) // increases player experience
