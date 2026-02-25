@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 107844988}
   - component: {fileID: 107844987}
   m_Layer: 0
-  m_Name: LootPrefab
+  m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,10 +226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31671f6f2067436449e531bb29a5a332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Loot
-  itemSO: {fileID: 0}
-  anim: {fileID: 0}
-  sr: {fileID: 0}
-  quantity: 0
+  itemSO: {fileID: 11400000, guid: 483a5c2d250161b4592bf06c5412db66, type: 2}
+  anim: {fileID: 107844988}
+  sr: {fileID: 286114701}
+  quantity: 1
 --- !u!95 &107844988
 Animator:
   serializedVersion: 7
@@ -240,7 +240,7 @@ Animator:
   m_GameObject: {fileID: 107844986}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8353b431cd541e84bb55d3af019e80f7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -838,7 +838,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -3791318427878180659, guid: c3bde156318bbec4db1a97364e26e980, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2387,7 +2387,7 @@ Tilemap:
       - {fileID: -677709800, guid: 18ff6eef174bba744a5d31368f3ecfd5, type: 3}
       - {fileID: 859064001, guid: 18ff6eef174bba744a5d31368f3ecfd5, type: 3}
       - {fileID: 505771982, guid: 18ff6eef174bba744a5d31368f3ecfd5, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -3, y: 3, z: 0}
