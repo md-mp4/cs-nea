@@ -56,8 +56,15 @@ public class Player_Combat : MonoBehaviour
     private void OnDrawGizmosSelected() 
     // when gizmos are on, shows blue circle of range weaponRange around attackPosition
     {
-        Gizmos.color = Color.blue;
+        if(attackPoint == null || StatsManager.Instance == null)
+        // doesn't run if there is no valid attack point or stats manager
+        {
+            return;
+        }
+        
+        Gizmos.color = Color.blue; // blue gizmo
         Gizmos.DrawWireSphere(attackPoint.position, StatsManager.Instance.weaponRange);
+        // makes a circle of radius weapon range around attack point's position
     }
 
 }
