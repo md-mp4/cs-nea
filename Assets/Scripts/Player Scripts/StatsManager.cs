@@ -1,10 +1,13 @@
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.Rendering;
+using TMPro;
 
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance; // single stats manager reference - only 1 should exist
+    public TMP_Text healthText; // health text
+    public StatsUI statsUI; // stats UI reference
 
     [Header("Combat Stats")]
     public int damage; // player's damage
@@ -32,4 +35,54 @@ public class StatsManager : MonoBehaviour
         }
     }
 
+    public void UpdateMaxHealth(int amount) // updates maxHealth and text
+    {
+        maxHealth += amount; // increases maxHealth by amount
+        healthText.text = "HP: " + currentHealth + "/" + maxHealth; 
+        // changes health text to reflect new values
+        statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
+    } 
+    
+    public void UpdateHealth(int amount) // updates currentHealth and text
+    {
+        currentHealth += amount; // increases currentHealth by amount
+        healthText.text = "HP: " + currentHealth + "/" + maxHealth; 
+        // changes health text to reflect new values
+        statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
+    } 
+
+    public void UpdateDamage(int amount) // updates damage
+    {
+        damage += amount; // increases damage by amount
+        statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
+    }
+
+    public void UpdateSpeed(int amount) // updates speed
+    {
+        speed += amount; // increases speed by amount
+        statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
+    }
+    public void UpdateWeaponRange(int amount) // updates weaponRange
+    {
+        weaponRange += amount; // increases weaponRange by amount
+        statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
+    }
+
+    public void UpdateKnockbackForce(int amount) // updates knockbackForce
+    {
+        knockbackForce += amount; // increases knockbackForce by amount
+        statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
+    }
+
+    public void UpdateKnockbackTime(int amount) // updates knockbackTime
+    {
+        knockbackTime += amount; // increases knockbackTime by amount
+        statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
+    }
+
+    public void UpdateStunTime(int amount) // updates stunTime
+    {
+        stunTime += amount; // increases stunTime by amount
+        statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
+    }
 }

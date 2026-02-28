@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Loot : MonoBehaviour
@@ -7,6 +8,8 @@ public class Loot : MonoBehaviour
     public SpriteRenderer sr; // sprite renderer reference
 
     public int quantity; // defines the amount of the loot item given
+    public static event Action<ItemSO, int> OnItemLooted;
+    // global alert which passes parameters to subscribed scripts which are listening for it
 
     private void OnValidate() // runs whenever the Unity inspector is used to edit the loot
     {
@@ -22,6 +25,8 @@ public class Loot : MonoBehaviour
         if(collision.CompareTag("Player")) // runs code if the one who triggers the collider has the player tag
         {
             anim.Play("Item Pickup Animation"); // plays the pickup animation
+            OnItemLooted?.Invoke(itemSO, quantity);
+            // global alert passing itemSO and quantity to listeners, only if there are subscribed listeners
             Destroy(gameObject, 0.5f); // destroys the item object after 0.5s so it can finish the animation first
         }
     }
