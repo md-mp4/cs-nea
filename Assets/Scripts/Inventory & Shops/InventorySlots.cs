@@ -25,7 +25,17 @@ public class InventorySlots : MonoBehaviour, IPointerClickHandler
         {
             if (eventData.button == PointerEventData.InputButton.Left) // on left click
             {
+                if (itemSO.currentHealth > 0 && StatsManager.Instance.currentHealth >= StatsManager.Instance.maxHealth)
+                // if the item heals and the player already has full health
+                {
+                    return; // stops the item being used
+                }
                 inventoryManager.UseItem(this); // uses the item in the slot
+            }
+
+            if (eventData.button == PointerEventData.InputButton.Right)  // on right click
+            {
+                inventoryManager.DropItem(this); // drops the item
             }
         }
     }

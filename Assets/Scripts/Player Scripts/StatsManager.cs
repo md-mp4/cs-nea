@@ -46,6 +46,10 @@ public class StatsManager : MonoBehaviour
     public void UpdateHealth(int amount) // updates currentHealth and text
     {
         currentHealth += amount; // increases currentHealth by amount
+        if (currentHealth >= maxHealth) // if health is more than the max allowed
+        {
+            currentHealth = maxHealth; // sets health to max health if overhealed
+        }
         healthText.text = "HP: " + currentHealth + "/" + maxHealth; 
         // changes health text to reflect new values
         statsUI.UpdateAllStats(); // updates stats UI to reflect new stats

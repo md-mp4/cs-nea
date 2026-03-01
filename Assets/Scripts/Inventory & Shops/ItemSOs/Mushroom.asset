@@ -16,8 +16,13 @@ MonoBehaviour:
   itemDescription: A normal red mushroom with nothing special to speak of.
   icon: {fileID: -5225540622116197949, guid: 8b687b41432c96242bb8fddfbd8eb209, type: 3}
   isGold: 0
-  currentHealth: 0
+  stackSize: 4
+  currentHealth: 5
   maxHealth: 0
-  speed: 0
-  damage: 0
-  duration: 0
+  speed: 2
+  damage: 3
+  weaponRange: 0
+  knockbackForce: 0
+  knockbackTime: 0
+  stunTime: 0
+  duration: 10
