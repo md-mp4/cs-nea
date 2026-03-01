@@ -2986,6 +2986,7 @@ GameObject:
   - component: {fileID: 863361611}
   - component: {fileID: 863361615}
   - component: {fileID: 863361616}
+  - component: {fileID: 863361617}
   m_Layer: 5
   m_Name: InventoryCanvas
   m_TagString: Untagged
@@ -3102,6 +3103,15 @@ MonoBehaviour:
   useItem: {fileID: 863361616}
   lootPrefab: {fileID: 6375649103414231590, guid: 1ca2c67cc8d714e4ba263967f433244c, type: 3}
   player: {fileID: 417252875}
+  itemDatabase:
+  - {fileID: 11400000, guid: 553f31192a6881c4db2c63e6e862189e, type: 2}
+  - {fileID: 11400000, guid: 7331747ee2098b04b87813233ee45f41, type: 2}
+  - {fileID: 11400000, guid: 355d92862bf6bec4994f8d76aabb85d8, type: 2}
+  - {fileID: 11400000, guid: acc758113c6c48d45b404d06608dfbb3, type: 2}
+  - {fileID: 11400000, guid: 5f6ad447887124041917e3207ed28cd6, type: 2}
+  - {fileID: 11400000, guid: cea5b217be4716747b5c456d2539c85b, type: 2}
+  - {fileID: 11400000, guid: 483a5c2d250161b4592bf06c5412db66, type: 2}
+  - {fileID: 11400000, guid: 5dddad3cb36c15841b913437ab5aef2e, type: 2}
 --- !u!114 &863361616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3114,6 +3124,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e30add8e9fe494ab16d1f2eb4f61c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UseItem
+--- !u!114 &863361617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863361610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d452611185d44724484f7812a4026198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySorter
+  inventoryManager: {fileID: 863361615}
 --- !u!1001 &872976137
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,9 @@
 using UnityEngine;
 using TMPro;
 using System.Data;
+using System.IO;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -11,11 +14,94 @@ public class InventoryManager : MonoBehaviour
     public GameObject lootPrefab; // reference to game object to allow the script to make one
     public Transform player; // reference to the player's transform
 
+    public ItemSO[] itemDatabase; // reference to ItemSO so they can all be saved
+
     private void Start() // runs at the start of the game
     {
         foreach (var slot in itemSlots) // loops through each value in itemSlots array
         {
             slot.UpdateUI(); // updates each slot's UI
+        }
+    }
+
+    private void Update() // runs every frame to check for key presses
+    {
+        var keyboard = Keyboard.current; // getting a reference to the keyboard
+    
+        if (keyboard == null) return; // if no keyboard is plugged in doesn't run this
+        
+        if (keyboard.leftCtrlKey.isPressed && keyboard.hKey.wasPressedThisFrame)
+        // checks if the left Ctrl key is held down and if the h key was pressed this frame
+        {
+            SaveGame(); // saves the game
+        }
+
+        if (keyboard.leftCtrlKey.isPressed && keyboard.jKey.wasPressedThisFrame)
+        // checks if the left Ctrl key is held down and if the j key was pressed this frame
+        {
+            LoadGame(); // loads the last save file
+        }
+    }
+
+    public void SaveGame() // method for saving the game
+    {
+        InventorySaveData data = new InventorySaveData(); // creating a new save data object to fill up
+        data.goldAmount = gold; // grabbing the current gold total
+
+        foreach (var slot in itemSlots) // looping through every slot to see what needs saving
+        {
+            if (slot.itemSO != null) // only saving the slot if it's not empty, otherwise it's a waste of time
+            {
+                SlotSaveData slotData = new SlotSaveData();
+                slotData.itemName = slot.itemSO.itemName; // getting the name string
+                slotData.quantity = slot.quantity; // getting the amount
+                data.savedSlots.Add(slotData); // adding this slot to our list
+            }
+        }
+
+        string json = JsonUtility.ToJson(data, true); // turning all the data into a JSON string thats easy to read
+        File.WriteAllText(Application.persistentDataPath + "/save.json", json); // writing that string into a file on the computer
+        
+        Debug.Log("Game saved. File found at: " + Application.persistentDataPath); // debug log to make sure the code worked
+    }
+
+    public void LoadGame() // loads the game 
+    {
+        string path = Application.persistentDataPath + "/save.json"; // the path to pull the file from
+        
+        if (File.Exists(path)) // checking if the file actually exists so the game doesn't crash if its not there
+        {
+            string json = File.ReadAllText(path); // reading the text from the file and turning it back into a data object
+            InventorySaveData data = JsonUtility.FromJson<InventorySaveData>(json); // takes inventory save data from JSON file
+
+            gold = data.goldAmount; // setting the gold back to what it was
+            if(goldText != null) goldText.text = gold.ToString(); // updating the UI text
+
+            foreach (var slot in itemSlots) // clearing out the current inventory so the player doesn't get double items
+            { 
+                slot.itemSO = null; slot.quantity = 0; // clears the slot
+            }
+
+            // linear search to find the items by name
+            for (int i = 0; i < data.savedSlots.Count; i++) // loop for when i is less than the count as i increments
+            {
+                foreach (ItemSO so in itemDatabase) // checking item database array one by one for a name match
+                {
+                    if (so.itemName == data.savedSlots[i].itemName) // if the name in the save matches the name in the database
+                    {
+                        itemSlots[i].itemSO = so; // put the item back in the slot
+                        itemSlots[i].quantity = data.savedSlots[i].quantity; // set the amount
+                        break; // found so it can stop looking and move to the next one
+                    }
+                }
+            }
+            
+            foreach (var slot in itemSlots) // refreshing every slot's UI to reflect changes
+            { 
+                slot.UpdateUI(); // refreshing slot's UI to reflect changes
+            }
+            
+            Debug.Log("Everything loaded back in properly."); // debug code to make sure the code actually worked
         }
     }
 
@@ -112,4 +198,19 @@ public class InventoryManager : MonoBehaviour
 
     } 
 
+}
+
+[System.Serializable]
+public class SlotSaveData // saves item data from slots
+{
+    public string itemName; // takes the item name
+    public int quantity; // takes the item quantity
+}
+
+[System.Serializable]
+public class InventorySaveData // saves whole inventory data
+{
+    public int goldAmount; // takes the amount of gold in inventory
+    public List<SlotSaveData> savedSlots = new List<SlotSaveData>();
+    // takes the inventory slots and saves them to a list
 }
