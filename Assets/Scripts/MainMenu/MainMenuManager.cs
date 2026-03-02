@@ -39,14 +39,15 @@ public class MainMenuManager : MonoBehaviour
     public void QuitGame() // quits the game
     {
         Application.Quit(); // quits the game
+        Debug.Log("Game exited"); // debug log to see if it works
     }
 
     public void ToggleSettings() // toggles settings panel
     {
         if (settingsPanel != null) // if there is a panel
         {
-            bool isActive = settingsPanel.activeSelf; // if its active then 
-            settingsPanel.SetActive(!isActive);
+            bool isActive = settingsPanel.activeSelf; // if panel is active, isActive is true
+            settingsPanel.SetActive(!isActive); // if isActive is true, its disabled, vice versa
         }
     }
 }
