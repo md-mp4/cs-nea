@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class InventoryManager : MonoBehaviour
 {
     public int gold; // int for how much gold player has
+    public static bool ShouldLoadOnStart = false; // bool for if the inv should load or not
     public TMP_Text goldText; // reference to inventory's text representing current gold amount
     public InventorySlots[] itemSlots; // array to hold all the inventory slots
     public UseItem useItem; // reference to the useItem script
@@ -21,6 +22,12 @@ public class InventoryManager : MonoBehaviour
         foreach (var slot in itemSlots) // loops through each value in itemSlots array
         {
             slot.UpdateUI(); // updates each slot's UI
+        }
+
+        if (ShouldLoadOnStart == true)
+        {
+            LoadGame(); // loads the saved progress
+            ShouldLoadOnStart = false; // resets it immediately since false is the default state
         }
     }
 
