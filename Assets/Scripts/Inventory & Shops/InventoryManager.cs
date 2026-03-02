@@ -48,6 +48,11 @@ public class InventoryManager : MonoBehaviour
         InventorySaveData data = new InventorySaveData(); // creating a new save data object to fill up
         data.goldAmount = gold; // grabbing the current gold total
 
+        // save the coordinates from the player transform for later
+        data.pX = player.position.x;
+        data.pY = player.position.y;
+        data.pZ = player.position.z;
+
         foreach (var slot in itemSlots) // looping through every slot to see what needs saving
         {
             if (slot.itemSO != null) // only saving the slot if it's not empty, otherwise it's a waste of time
@@ -74,6 +79,11 @@ public class InventoryManager : MonoBehaviour
             string json = File.ReadAllText(path); // reading the text from the file and turning it back into a data object
             InventorySaveData data = JsonUtility.FromJson<InventorySaveData>(json); // takes inventory save data from JSON file
 
+            if (player != null) // if there is a player
+            {
+                player.position = new Vector3(data.pX, data.pY, data.pZ); // sends the player to the saved position
+            }
+            
             gold = data.goldAmount; // setting the gold back to what it was
             if(goldText != null) goldText.text = gold.ToString(); // updating the UI text
 
@@ -213,4 +223,8 @@ public class InventorySaveData // saves whole inventory data
     public int goldAmount; // takes the amount of gold in inventory
     public List<SlotSaveData> savedSlots = new List<SlotSaveData>();
     // takes the inventory slots and saves them to a list
+
+    public float pX; // saves player x position
+    public float pY; // saves player y position
+    public float pZ; // saves player z position
 }
