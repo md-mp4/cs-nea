@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
     private string savePath; // string to hold the file's save path
 
+    public TMP_Text buttonText; // reference to button's text
     public GameObject settingsPanel; // reference to panel settings 
     public Button continueButton; // reference to unity button to let it change from code
     
@@ -18,6 +20,15 @@ public class MainMenuManager : MonoBehaviour
         {
             continueButton.interactable = File.Exists(savePath); 
             // makes it interactible if there is a save file that exists on the machine
+
+            if (continueButton.interactable) // if the button is interactible
+            {
+                buttonText.color = Color.white; // white button
+            }
+            else
+            {
+                buttonText.color = new Color(1f, 1f, 1f, 0.25f); // changes colour if button disabled
+            }
         }
     }
 
