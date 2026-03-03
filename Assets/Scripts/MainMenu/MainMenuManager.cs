@@ -51,6 +51,7 @@ public class MainMenuManager : MonoBehaviour
     {
         Application.Quit(); // quits the game
         Debug.Log("Game exited"); // debug log to see if it works
+        UnityEditor.EditorApplication.isPlaying = false; // exits
     }
 
     public void ToggleSettings() // toggles settings panel
