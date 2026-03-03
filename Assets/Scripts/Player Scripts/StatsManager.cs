@@ -66,25 +66,25 @@ public class StatsManager : MonoBehaviour
         speed += amount; // increases speed by amount
         statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
     }
-    public void UpdateWeaponRange(int amount) // updates weaponRange
+    public void UpdateWeaponRange(float amount) // updates weaponRange
     {
         weaponRange += amount; // increases weaponRange by amount
         statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
     }
 
-    public void UpdateKnockbackForce(int amount) // updates knockbackForce
+    public void UpdateKnockbackForce(float amount) // updates knockbackForce
     {
         knockbackForce += amount; // increases knockbackForce by amount
         statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
     }
 
-    public void UpdateKnockbackTime(int amount) // updates knockbackTime
+    public void UpdateKnockbackTime(float amount) // updates knockbackTime
     {
         knockbackTime += amount; // increases knockbackTime by amount
         statsUI.UpdateAllStats(); // updates stats UI to reflect new stats
     }
 
-    public void UpdateStunTime(int amount) // updates stunTime
+    public void UpdateStunTime(float amount) // updates stunTime
     {
         stunTime += amount; // increases stunTime by amount
         statsUI.UpdateAllStats(); // updates stats UI to reflect new stats

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 320989228953770779}
   - component: {fileID: 7791645209904223798}
   m_Layer: 0
-  m_Name: Loot Prefab
+  m_Name: Meat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,10 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31671f6f2067436449e531bb29a5a332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Loot
-  itemSO: {fileID: 0}
+  itemSO: {fileID: 11400000, guid: acc758113c6c48d45b404d06608dfbb3, type: 2}
   anim: {fileID: 320989228953770779}
   sr: {fileID: 5724626962525805637}
-  quantity: 1
+  canBePickedUp: 1
+  quantity: 4
 --- !u!1 &9220024376525626228
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,8 +188,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -4346390735350895921, guid: 972e14d66dc3c904e93ac563de7678f6, type: 3}
+  m_SortingOrder: 100
+  m_Sprite: {fileID: 2690274267995810836, guid: f58187af2a09017469f59fe801d061ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

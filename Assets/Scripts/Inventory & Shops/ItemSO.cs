@@ -15,10 +15,10 @@ public class ItemSO : ScriptableObject
     public int maxHealth;
     public int speed;
     public int damage;
-    public int weaponRange;
-    public int knockbackForce;
-    public int knockbackTime;
-    public int stunTime;
+    public float weaponRange;
+    public float knockbackForce;
+    public float knockbackTime;
+    public float stunTime;
 
     [Header("Duration")] // holds the duration of temporary items
     public float duration; // duration of temporary items

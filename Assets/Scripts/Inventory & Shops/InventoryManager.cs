@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
 {
     public int gold; // int for how much gold player has
     public static bool ShouldLoadOnStart = false; // bool for if the inv should load or not
+    public int currentElevation; // keeps track of player's elevation state / layer
     public TMP_Text goldText; // reference to inventory's text representing current gold amount
     public InventorySlots[] itemSlots; // array to hold all the inventory slots
     public UseItem useItem; // reference to the useItem script
@@ -54,6 +55,7 @@ public class InventoryManager : MonoBehaviour
     {
         InventorySaveData data = new InventorySaveData(); // creating a new save data object to fill up
         data.goldAmount = gold; // grabbing the current gold total
+        data.currentElevation = currentElevation; // grabbing current elevation
 
         // save the coordinates from the player transform for later
         data.pX = player.position.x;
@@ -85,10 +87,22 @@ public class InventoryManager : MonoBehaviour
         {
             string json = File.ReadAllText(path); // reading the text from the file and turning it back into a data object
             InventorySaveData data = JsonUtility.FromJson<InventorySaveData>(json); // takes inventory save data from JSON file
+            currentElevation = data.currentElevation; // Pulls the saved state
 
             if (player != null) // if there is a player
             {
                 player.position = new Vector3(data.pX, data.pY, data.pZ); // sends the player to the saved position
+                
+                if (currentElevation == 1) // if the player was on a mountain before
+                {
+                    FindAnyObjectByType<ElevationEntry>().RestoreMountainState(); 
+                    // restores colliders to what they should be when the player enters a mountain 
+                } 
+                else 
+                {
+                    FindAnyObjectByType<ElevationExit>().RestoreGroundState(); 
+                    // restores colliders to what they should be when the player exits a mountain 
+                }
             }
             
             gold = data.goldAmount; // setting the gold back to what it was
@@ -234,4 +248,8 @@ public class InventorySaveData // saves whole inventory data
     public float pX; // saves player x position
     public float pY; // saves player y position
     public float pZ; // saves player z position
+
+    public int currentElevation; 
+    // saves player's elevation state
+    //  - different depending on if the player is on a mountain or on the ground
 }

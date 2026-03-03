@@ -15,6 +15,13 @@ public class PlayerHealth : MonoBehaviour
         healthText.text = "HP" + StatsManager.Instance.currentHealth + " / " + StatsManager.Instance.maxHealth; // sets text to current hp
     }
 
+    private void Update()
+    {
+        healthslider.maxValue = StatsManager.Instance.maxHealth; // sets slider max possible value to player max hp
+        healthslider.value = StatsManager.Instance.currentHealth; // sets slider current value to player current hp
+        healthText.text = "HP" + StatsManager.Instance.currentHealth + " / " + StatsManager.Instance.maxHealth; // sets text to current hp
+    }
+
     public void ChangeHealth(int amount) // used to modify player health
     {
         StatsManager.Instance.currentHealth += amount;

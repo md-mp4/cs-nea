@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: Meat
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: Meat
-  itemDescription: Raw meat. Doesn't look slightly cooked, so it must be unhealthy
+  itemDescription: Raw meat. Doesn't look even slightly cooked, so it must be unhealthy
     to eat  it.
   icon: {fileID: 2690274267995810836, guid: f58187af2a09017469f59fe801d061ac, type: 3}
   isGold: 0
-  currentHealth: 0
+  stackSize: 4
+  currentHealth: 8
   maxHealth: 0
-  speed: 0
-  damage: 0
+  speed: 2
+  damage: 1
+  weaponRange: 0
+  knockbackForce: 0.1
+  knockbackTime: 0
+  stunTime: 0
   duration: 0

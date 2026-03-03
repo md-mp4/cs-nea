@@ -25,4 +25,4 @@ MonoBehaviour:
   knockbackForce: 0
   knockbackTime: 0
   stunTime: 0
-  duration: 10
+  duration: 30

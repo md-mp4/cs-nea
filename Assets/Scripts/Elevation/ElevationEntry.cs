@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class ElevationEntry : MonoBehaviour
 {
@@ -20,8 +21,24 @@ public class ElevationEntry : MonoBehaviour
             }
 
             collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 15;
-             // player sorting order higher than any other
+            // player sorting order higher than any other
+            InventoryManager inventoryManager = GameObject.FindAnyObjectByType<InventoryManager>();
+            // finds the inventory manager by searching through the whole scene
+            inventoryManager.currentElevation = 1; // sets current elevation to 1
         }
+    }
+
+    public void RestoreMountainState() // restores colliders to if player was on mountain
+    {
+        foreach (Collider2D mountain in mountaincolliders) // loops through mountain colliders
+        {
+            mountain.enabled = false; // disables each collider
+        }
+        foreach (Collider2D boundary in boundarycolliders) // loops through boundary colliders
+        {
+            boundary.enabled = true; // enables each collider
+        }
+        GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().sortingOrder = 15; // sets player on top of everything
     }
 
 }

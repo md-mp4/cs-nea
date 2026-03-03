@@ -17,8 +17,13 @@ MonoBehaviour:
     plants' nutrients.
   icon: {fileID: 8793915729297761979, guid: 927c1ee4c89812948b9c6215572c1a7a, type: 3}
   isGold: 0
-  currentHealth: 0
-  maxHealth: 0
-  speed: 0
+  stackSize: 4
+  currentHealth: 8
+  maxHealth: 1
+  speed: 1
   damage: 0
+  weaponRange: 0
+  knockbackForce: 0
+  knockbackTime: 0
+  stunTime: 0
   duration: 0

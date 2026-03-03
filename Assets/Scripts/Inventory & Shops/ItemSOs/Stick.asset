@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: Stick
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: Stick
-  itemDescription: Its a stick you found on the floor. Nothing special.
+  itemDescription: Its a stick you found on the floor. Nothing special. Not edible.
   icon: {fileID: -3791318427878180659, guid: c3bde156318bbec4db1a97364e26e980, type: 3}
   isGold: 0
-  currentHealth: 0
+  stackSize: 4
+  currentHealth: -5
   maxHealth: 0
-  speed: 0
+  speed: 1
   damage: 0
+  weaponRange: 0
+  knockbackForce: 0
+  knockbackTime: 0
+  stunTime: 0
   duration: 0

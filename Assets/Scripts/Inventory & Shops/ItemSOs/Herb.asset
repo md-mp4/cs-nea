@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b4cd5d78fdf4484c8c3a912771a0d36, type: 3}
+  m_Name: Herb
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  itemName: Herb
+  itemDescription: It's probably not safe to just yank plants out of the ground without
+    knowing what it is in the first place. Even I don't know what type of leaf this
+    is.
+  icon: {fileID: -5099292496197868168, guid: 500b0aabf51e73a448a32746946ff854, type: 3}
+  isGold: 0
+  stackSize: 4
+  currentHealth: 3
+  maxHealth: 1
+  speed: 0
+  damage: 0
+  weaponRange: 0
+  knockbackForce: 0
+  knockbackTime: 0
+  stunTime: 0
+  duration: 0
