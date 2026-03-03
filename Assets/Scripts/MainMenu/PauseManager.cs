@@ -14,7 +14,7 @@ public class PauseManager : MonoBehaviour
     
         if (keyboard == null) return; // if no keyboard is plugged in doesn't run this
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame) // if escape was pressed this frame
+        if (keyboard.escapeKey.wasPressedThisFrame) // if escape was pressed this frame
         {
             if (isPaused) // if the game is paused
             {
